@@ -1,0 +1,52 @@
+# ===== 商品数量验证 =====
+inventory_count_tests:
+  - case_id: "INV-001"
+    desc: "商品列表默认展示6个商品"
+    expected_count: 6
+
+# ===== 排序测试 =====
+sort_tests:
+  - case_id: "INV-002"
+    desc: "按价格从低到高排序"
+    sort_by: "lohi"
+    extract: "prices"
+    check: "asc"
+
+  - case_id: "INV-003"
+    desc: "按价格从高到低排序"
+    sort_by: "hilo"
+    extract: "prices"
+    check: "desc"
+
+  - case_id: "INV-004"
+    desc: "按名称 A→Z 排序"
+    sort_by: "az"
+    extract: "names"
+    check: "az"
+
+  - case_id: "INV-005"
+    desc: "按名称 Z→A 排序"
+    sort_by: "za"
+    extract: "names"
+    check: "za"
+
+# ===== 购物车操作测试 =====
+cart_actions_tests:
+  - case_id: "INV-006"
+    desc: "添加单个商品，购物车角标显示1"
+    products: ["Sauce Labs Backpack"]
+    expected_count: 1
+
+  - case_id: "INV-007"
+    desc: "添加3个不同商品，购物车角标显示3"
+    products:
+      - "Sauce Labs Backpack"
+      - "Sauce Labs Bike Light"
+      - "Sauce Labs Bolt T-Shirt"
+    expected_count: 3
+
+  - case_id: "INV-008"
+    desc: "添加商品后再移除，购物车角标归零"
+    add_first: "Sauce Labs Backpack"
+    then_remove: "Sauce Labs Backpack"
+    expected_count: 0

@@ -1,0 +1,22 @@
+# IDE
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Pytest
+.pytest_cache/
+
+# Reports (太大的二进制文件不提交)
+reports/
+
+# Virtual env
+venv/
+.venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db

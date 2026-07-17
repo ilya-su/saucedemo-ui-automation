@@ -1,0 +1,27 @@
+login_tests:
+  - case_id: "LOGIN-001"
+    desc: "正确账号密码登录成功"
+    username: "standard_user"
+    password: "secret_sauce"
+    expected: "success"
+
+  - case_id: "LOGIN-002"
+    desc: "错误密码登录失败"
+    username: "standard_user"
+    password: "wrong_password"
+    expected: "error"
+    error_msg: "Username and password do not match"
+
+  - case_id: "LOGIN-003"
+    desc: "锁定用户登录失败"
+    username: "locked_out_user"
+    password: "secret_sauce"
+    expected: "error"
+    error_msg: "Sorry, this user has been locked out"
+
+  - case_id: "LOGIN-004"
+    desc: "空用户名登录"
+    username: ""
+    password: "secret_sauce"
+    expected: "error"
+    error_msg: "Username is required"

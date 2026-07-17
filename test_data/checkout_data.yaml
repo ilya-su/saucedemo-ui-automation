@@ -1,0 +1,40 @@
+# ===== 结账测试数据 =====
+checkout_success_tests:
+  - case_id: "CHK-001"
+    desc: "完整结账流程：填写地址→确认→下单成功"
+    products:
+      - "Sauce Labs Backpack"
+      - "Sauce Labs Bike Light"
+    shipping:
+      first: "Zhang"
+      last: "San"
+      zipcode: "100000"
+
+checkout_validation_tests:
+  - case_id: "CHK-002"
+    desc: "First Name 为空时校验失败"
+    first: ""
+    last: "San"
+    zipcode: "100000"
+    expected_error: "Error: First Name is required"
+
+  - case_id: "CHK-003"
+    desc: "Last Name 为空时校验失败"
+    first: "Zhang"
+    last: ""
+    zipcode: "100000"
+    expected_error: "Error: Last Name is required"
+
+  - case_id: "CHK-004"
+    desc: "Postal Code 为空时校验失败"
+    first: "Zhang"
+    last: "San"
+    zipcode: ""
+    expected_error: "Error: Postal Code is required"
+
+checkout_cancel_tests:
+  - case_id: "CHK-005"
+    desc: "点击 Cancel 取消结账，返回购物车页"
+    products:
+      - "Sauce Labs Backpack"
+    cancel_at: "step_one"   # 在 Step One 取消

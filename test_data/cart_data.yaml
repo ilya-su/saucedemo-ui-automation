@@ -1,0 +1,28 @@
+# ===== 购物车测试数据 =====
+cart_tests:
+  - case_id: "CART-001"
+    desc: "添加2个商品到购物车，验证商品名称和数量"
+    add_products:
+      - "Sauce Labs Backpack"
+      - "Sauce Labs Bike Light"
+    expected_count: 2
+    expected_names:
+      - "Sauce Labs Backpack"
+      - "Sauce Labs Bike Light"
+
+  - case_id: "CART-002"
+    desc: "添加商品后移除一个，验证数量减少"
+    add_products:
+      - "Sauce Labs Backpack"
+      - "Sauce Labs Bike Light"
+    remove: "Sauce Labs Backpack"
+    expected_count: 1
+
+cart_flow:
+  - case_id: "CART-003"
+    desc: "购物车页面点击 Continue Shopping 返回商品页"
+    do: "continue"
+
+  - case_id: "CART-004"
+    desc: "购物车页面点击chek out，跳转结账页面"
+    do: "check"
