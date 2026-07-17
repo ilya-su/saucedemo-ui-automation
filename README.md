@@ -139,3 +139,12 @@ BASE_URL=https://staging.example.com pytest
 | `EXPLICIT_WAIT` | `10` | 显式等待超时秒数 |
 | `SCREENSHOT_ON_FAILURE` | `true` | 用例失败自动截图 |
 
+
+## 被测对象说明
+
+[SauceDemo](https://www.saucedemo.com) 是 SauceLabs 官方提供的测试练习站，有 6 个预置账号（正常、锁定、图片异常等），适合验证自动化框架的健壮性。
+
+
+## License
+
+MIT
