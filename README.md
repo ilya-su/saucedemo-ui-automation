@@ -139,30 +139,3 @@ BASE_URL=https://staging.example.com pytest
 | `EXPLICIT_WAIT` | `10` | 显式等待超时秒数 |
 | `SCREENSHOT_ON_FAILURE` | `true` | 用例失败自动截图 |
 
----
-
-## 设计决策（面试可能被问）
-
-### Q: 为什么用 PO 模式？
-元素定位集中在 Page Object 类属性中。前端改 DOM 结构时，只需改一处定位符，不影响测试用例代码。
-
-### Q: 为什么 YAML 而不是 Excel/JSON？
-YAML 可读性最好，非技术人员也能维护测试数据。pytest parametrize 原生支持字典列表，和 YAML 天然匹配。
-
-### Q: driver fixture 为什么 scope=function？
-每个用例独立的浏览器实例，用例间数据不污染。如果 scope=class 虽然更快，但一个用例的残留数据可能让另一个用例误判通过。
-
-### Q: 失败截图怎么处理的？
-`conftest.py` 注册了 `pytest_runtest_makereport` hook。任何用例在 call 阶段失败，自动截取当前页面写入 Allure 报告，不需要在每个用例里写 try/except。
-
----
-
-## 被测对象说明
-
-[SauceDemo](https://www.saucedemo.com) 是 SauceLabs 官方提供的测试练习站，有 6 个预置账号（正常、锁定、图片异常等），适合验证自动化框架的健壮性。
-
----
-
-## License
-
-MIT
