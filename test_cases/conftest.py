@@ -1,6 +1,6 @@
 import allure
 import pytest
-from config.driver_manager import DriverManager
+from utils.driver_manager import DriverManager
 from config.settings import BASE_URL, HEADLESS, TEST_USER, TEST_PASS
 from pages.login_page import LoginPage
 
