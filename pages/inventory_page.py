@@ -2,7 +2,7 @@ from pexpect import TIMEOUT
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from common.slug import _slug
+from utils.slug import _slug
 from pages.base_page import BasePage
 from config.settings import INVENTORY_URL, EXPLICIT_WAIT
 import allure

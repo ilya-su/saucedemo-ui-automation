@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from common.read_yaml import read
+from utils.read_yaml import read
 from pages.inventory_page import InventoryPage
 
 @allure.epic("saucedemo 测试")

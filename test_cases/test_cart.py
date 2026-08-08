@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from common.read_yaml import read_yaml
+from utils.read_yaml import read_yaml
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
