@@ -3,7 +3,7 @@ from selenium.common import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from config.settings import EXPLICIT_WAIT
+from conf.settings import EXPLICIT_WAIT
 
 
 class BasePage:

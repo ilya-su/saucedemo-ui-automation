@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from config.settings import CHECKOUT_ONE_URL, EXPLICIT_WAIT
+from conf.settings import CHECKOUT_ONE_URL, EXPLICIT_WAIT
 from pages.base_page import BasePage
 
 

@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import Select
 
 from utils.slug import _slug
 from pages.base_page import BasePage
-from config.settings import INVENTORY_URL, EXPLICIT_WAIT
+from conf.settings import INVENTORY_URL, EXPLICIT_WAIT
 import allure
 
 class InventoryPage(BasePage):
@@ -64,7 +64,7 @@ class InventoryPage(BasePage):
     def add_to_cart(self, product_name):
         """按商品名称点 Add to cart（SauceDemo 的 add 按钮 id 基于产品名）"""
         with allure.step(f"添加商品到购物车: {product_name}"):
-            btn_id = f"add-to-cart-{self._slug(product_name)}"
+            btn_id = f"add-to-cart-{_slug(product_name)}"
             self.click((By.ID, btn_id))
 
     def remove_from_cart(self, product_name):

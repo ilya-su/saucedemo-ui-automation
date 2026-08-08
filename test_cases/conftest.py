@@ -1,7 +1,7 @@
 import allure
 import pytest
 from utils.driver_manager import DriverManager
-from config.settings import BASE_URL, HEADLESS, TEST_USER, TEST_PASS
+from conf.settings import BASE_URL, HEADLESS, TEST_USER, TEST_PASS
 from pages.login_page import LoginPage
 
 @pytest.fixture(scope="function")

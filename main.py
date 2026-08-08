@@ -1,10 +1,18 @@
 import os
 import time
+
 import pytest
 
-if __name__ == '__main__':
+
+def smoke():
+    pytest.main(["-sv -smoke"])
 
 
+def all_test():
+    pytest.main(["-sv"])
+
+
+def all_test_with_allure():
     # 1. 生成时间戳文件夹：年月日_时分秒
     time_str = time.strftime("%Y%m%d_%H%M%S")
     root_report_dir = os.path.join("reports", time_str)
@@ -25,3 +33,20 @@ if __name__ == '__main__':
     allure_cmd = f"allure generate {data_dir} -o {html_dir} --clean"
     print("生成报告命令：", allure_cmd)
     os.system(allure_cmd)
+
+
+if __name__ == '__main__':
+    smoke()
+    num = input("""
+        输入数字，选择测试模式：
+        1.测试全部用例（生成allure报告）
+        2.测试全部用例（不生成allure报告）
+        3.冒烟测试
+    """)
+
+    if num == '1':
+        all_test_with_allure()
+    if num == '2':
+        all_test()
+    if num == '3':
+        smoke()

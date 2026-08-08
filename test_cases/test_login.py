@@ -1,7 +1,7 @@
 import allure
 import pytest
 from utils.read_yaml import read_yaml
-from config.settings import BASE_URL
+from conf.settings import BASE_URL
 from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 

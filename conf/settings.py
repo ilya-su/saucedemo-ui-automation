@@ -19,7 +19,7 @@ TEST_PASS = os.getenv("TEST_PASS", "secret_sauce")
 
 # ── 浏览器配置 ──
 BROWSER  = os.getenv("BROWSER", "chrome")
-HEADLESS = os.getenv("HEADLESS", "false").lower() == "true"
+HEADLESS = os.getenv("HEADLESS", "false")
 
 # ── 超时配置（秒） ──
 IMPLICIT_WAIT  = int(os.getenv("IMPLICIT_WAIT",  "10"))

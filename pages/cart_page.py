@@ -2,7 +2,7 @@ import allure
 from selenium.webdriver.common.by import By
 
 from utils.slug import _slug
-from config.settings import CART_URL, EXPLICIT_WAIT
+from conf.settings import CART_URL, EXPLICIT_WAIT
 from pages.base_page import BasePage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage

@@ -1,6 +1,6 @@
 import yaml
 
-from config.settings import ROOT_DIR
+from conf.settings import ROOT_DIR
 
 """读取yaml文件的方法，直接填yaml文件的名字 ， 如：login.yaml"""
 def read_yaml(file):

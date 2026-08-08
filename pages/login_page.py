@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from config.settings import BASE_URL
+from conf.settings import BASE_URL
 from pages.base_page import BasePage
 
 
