@@ -1,7 +1,10 @@
+from pexpect import TIMEOUT
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+
+from common.slug import _slug
 from pages.base_page import BasePage
-from config.settings import INVENTORY_URL
+from config.settings import INVENTORY_URL, EXPLICIT_WAIT
 import allure
 
 class InventoryPage(BasePage):
@@ -19,8 +22,8 @@ class InventoryPage(BasePage):
     ITEM_DESC       = (By.CLASS_NAME, "inventory_item_desc")
 
     #创建对象自动进入商品列表页，并确认是否成功
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver,timeout=EXPLICIT_WAIT):
+        super().__init__(driver,timeout)
 
     # ---- 页面级操作 ----
     @allure.step("进入商品列表页中")
@@ -66,7 +69,7 @@ class InventoryPage(BasePage):
 
     def remove_from_cart(self, product_name):
         with allure.step(f"从购物车移除: {product_name}"):
-            btn_id = f"remove-{self._slug(product_name)}"
+            btn_id = f"remove-{_slug(product_name)}"
             self.click((By.ID, btn_id))
 
     def go_to_cart(self):
@@ -79,9 +82,3 @@ class InventoryPage(BasePage):
         if self.is_displayed(self.CART_BADGE):
             return int(self.get_text(self.CART_BADGE))
         return 0
-
-    # ---- 工具方法 ----
-    @staticmethod
-    def _slug(name):
-        """Sauce Labs Backpack → sauce-labs-backpack"""
-        return name.lower().replace(" ", "-").replace("'", "")

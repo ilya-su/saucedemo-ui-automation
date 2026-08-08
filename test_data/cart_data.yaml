@@ -24,5 +24,5 @@ cart_flow:
     do: "continue"
 
   - case_id: "CART-004"
-    desc: "购物车页面点击chek out，跳转结账页面"
+    desc: "购物车页面点击check out，跳转结账页面"
     do: "check"

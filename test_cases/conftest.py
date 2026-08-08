@@ -1,15 +1,14 @@
 import allure
 import pytest
 from config.driver_manager import DriverManager
-from config.settings import BASE_URL
-from pages.base_page import BasePage
+from config.settings import BASE_URL, HEADLESS, TEST_USER, TEST_PASS
 from pages.login_page import LoginPage
 
 @pytest.fixture(scope="function")
 def driver():
     """每个测试用例独立的driver实例"""
-    # 默认启动无头模式，这里启用有头模式
-    drv = DriverManager.create_driver(headless=False)
+    # 环境变量默认启动无头模式
+    drv = DriverManager.create_driver(headless=HEADLESS)
     yield drv
     drv.quit()  # 用例结束自动关闭浏览器
 
@@ -19,7 +18,7 @@ def logged_in_driver(driver):
     driver.get(BASE_URL)
     login_page = LoginPage(driver)
     with allure.step("标准账号登录"):
-        login_page.login('standard_user','secret_sauce')
+        login_page.login(TEST_USER,TEST_PASS)
     return driver
 
 """hookwrapper=True：钩子包装器，支持yield分割前后逻辑"""

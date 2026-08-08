@@ -1,7 +1,8 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from config.settings import CART_URL
+from common.slug import _slug
+from config.settings import CART_URL, EXPLICIT_WAIT
 from pages.base_page import BasePage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
@@ -18,8 +19,8 @@ class CartPage(BasePage):
     CONTINUE_BUTTON = (By.ID, "continue-shopping")
     CHECKOUT_BUTTON = (By.ID, "checkout")
 
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver,timeout=EXPLICIT_WAIT):
+        super().__init__(driver,timeout=timeout)
 
     @allure.step("进入购物车页面中")
     def open(self):
@@ -60,11 +61,6 @@ class CartPage(BasePage):
     def remove_from_cart(self, product_name):
         """按商品名移除（id 格式: remove-sauce-labs-backpack）"""
         with allure.step(f"从购物车移除: {product_name}"):
-            btn_id = f"remove-{self._slug(product_name)}"
+            btn_id = f"remove-{_slug(product_name)}"
             self.click((By.ID, btn_id))
 
-    # ---- 工具方法 ----
-    @staticmethod
-    def _slug(name):
-        """Sauce Labs Backpack → sauce-labs-backpack"""
-        return name.lower().replace(" ", "-").replace("'", "")

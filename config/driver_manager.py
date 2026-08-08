@@ -6,10 +6,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class DriverManager:
     """WebDriver驱动管理，按配置创建驱动实例"""
+
     @staticmethod
     def create_driver(browser="chrome", headless=True):
         if browser == "chrome":
-            # service = Service(ChromeDriverManager().install())
             options = Options()
             if headless:
                 options.add_argument("--headless")
@@ -31,5 +31,13 @@ class DriverManager:
             # 去掉 "Chrome正在被自动化测试软件控制" 提示条
             options.add_experimental_option("excludeSwitches", ["enable-automation"])
             return webdriver.Chrome(options=options)
+        elif browser == "firefox":
+            options = Options()
+            if headless:
+                options.add_argument("--headless")
+            options.add_argument("--window-size=1920,1080")
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            return webdriver.Chrome(options=options)
+
         # 扩展：可加 Firefox、Edge
         raise ValueError(f"Unsupported browser: {browser}")

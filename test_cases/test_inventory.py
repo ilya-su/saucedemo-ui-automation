@@ -1,10 +1,9 @@
-from time import sleep
-
 import allure
 import pytest
 
-from common.read_yaml import read
+from common.read_yaml import read_yaml
 from pages.inventory_page import InventoryPage
+
 
 # ====================================================================
 # INV-001：商品数量验证
@@ -12,7 +11,7 @@ from pages.inventory_page import InventoryPage
 @allure.epic("saucedemo 测试")
 @allure.feature("inventory 模块测试")
 @allure.story("商品数量验证")
-def test_product_count( logged_in_driver):
+def test_product_count(logged_in_driver):
     """验证商品列表默认展示6个商品"""
     page = InventoryPage(logged_in_driver)
     count = page.get_item_count()
@@ -25,7 +24,7 @@ def test_product_count( logged_in_driver):
 @allure.epic("saucedemo 测试")
 @allure.feature("inventory 模块测试")
 @allure.story("排序验证")
-@pytest.mark.parametrize("case", read("inventory_data.yaml")["sort_tests"],
+@pytest.mark.parametrize("case", read_yaml("inventory_data.yaml")["sort_tests"],
                          ids=lambda c: c["case_id"])
 def test_sort(driver, case):
     """数据驱动：4种排序方式，每种验证排列顺序"""
@@ -62,7 +61,7 @@ def test_sort(driver, case):
 @allure.epic("saucedemo 测试")
 @allure.feature("inventory 模块测试")
 @allure.story("购物车操作")
-@pytest.mark.parametrize("case", read("inventory_data.yaml")["cart_actions_tests"],
+@pytest.mark.parametrize("case", read_yaml("inventory_data.yaml")["cart_actions_tests"],
                          ids=lambda c: c["case_id"])
 def test_cart_actions(logged_in_driver, case):
     """添加/移除商品，验证购物车角标数字是否正确"""
@@ -81,4 +80,3 @@ def test_cart_actions(logged_in_driver, case):
     actual = page.get_cart_count()
     assert actual == case["expected_count"], \
         f"期望购物车角标={case['expected_count']}，实际={actual}"
-

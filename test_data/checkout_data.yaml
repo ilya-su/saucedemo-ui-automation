@@ -6,8 +6,8 @@ checkout_success_tests:
       - "Sauce Labs Backpack"
       - "Sauce Labs Bike Light"
     shipping:
-      first: "Zhang"
-      last: "San"
+      first: "Test_First"
+      last: "Test_last"
       zipcode: "100000"
 
 checkout_validation_tests:

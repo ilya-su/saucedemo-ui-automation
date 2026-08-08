@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from common.read_yaml import read
+from common.read_yaml import read_yaml
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
@@ -13,7 +13,7 @@ from pages.inventory_page import InventoryPage
 @allure.epic("saucedemo 测试")
 @allure.feature("cart 模块测试")
 @allure.story("购物车模块")
-@pytest.mark.parametrize("case", read("cart_data.yaml")["cart_tests"],
+@pytest.mark.parametrize("case", read_yaml("cart_data.yaml")["cart_tests"],
                          ids=lambda c: c["case_id"])
 def test_cart(logged_in_driver, case):
     """购物车操作：添加商品→进入购物车→验证"""
@@ -56,7 +56,7 @@ def test_cart(logged_in_driver, case):
 @allure.epic("saucedemo 测试")
 @allure.feature("cart 模块测试")
 @allure.story("购物车的状态流转")
-@pytest.mark.parametrize("case", read("cart_data.yaml")["cart_flow"],
+@pytest.mark.parametrize("case", read_yaml("cart_data.yaml")["cart_flow"],
                          ids=lambda c: c["case_id"])
 def test_cart_flow(logged_in_driver, case):
     """购物车页面的状态跳转：返回商品列表，结账跳转"""

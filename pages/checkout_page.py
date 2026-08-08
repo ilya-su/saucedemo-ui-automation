@@ -1,7 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from config.settings import CHECKOUT_ONE_URL
+from config.settings import CHECKOUT_ONE_URL, EXPLICIT_WAIT
 from pages.base_page import BasePage
 
 
@@ -12,7 +12,7 @@ class CheckoutPage(BasePage):
           - Step Two: 确认订单总览（/checkout-step-two.html）
           - Complete:  下单成功（/checkout-complete.html）
     """
-    CANSEL_BUTTON = (By.ID, 'cancel')
+    CANCEL_BUTTON = (By.ID, 'cancel')
     CONTINUE_BUTTON = (By.ID, 'continue')
     """step-one"""
     STEP_ONE_TITLE = (By.XPATH, '//span[text()="Checkout: Your Information"]')
@@ -30,8 +30,8 @@ class CheckoutPage(BasePage):
     STEP_THREE_TITLE = (By.XPATH, '//span[text()="Checkout: Complete!"]')
     BACK_HOME_BUTTON = (By.ID, "back-to-products")
 
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver,timeout=EXPLICIT_WAIT):
+        super().__init__(driver,timeout)
 
     """step-one 操作"""
 
@@ -43,7 +43,6 @@ class CheckoutPage(BasePage):
         return self
 
     def is_loaded(self):
-        print("step-one")
         return self.is_displayed(self.STEP_ONE_TITLE)
 
     @allure.step("填写收货信息：{firstname}/{lastname}/{postal_code}")
@@ -56,10 +55,11 @@ class CheckoutPage(BasePage):
     @allure.step("点击continue按钮")
     def click_continue(self):
         self.click(self.CONTINUE_BUTTON)
+        return self
 
     @allure.step("点击cancel按钮")
     def click_cancel(self):
-        self.click(self.CANSEL_BUTTON)
+        self.click(self.CANCEL_BUTTON)
         from pages.cart_page import CartPage
         return CartPage(self.driver)
 

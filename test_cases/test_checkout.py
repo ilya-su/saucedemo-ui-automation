@@ -10,7 +10,7 @@ from pages.inventory_page import InventoryPage
 # ====================================================================
 # CHK-001：完整结账成功流程
 # ====================================================================
-@pytest.mark.parametrize("case", read("checkout_data.yaml")["checkout_success_tests"],
+@pytest.mark.parametrize("case", read_yaml("checkout_data.yaml")["checkout_success_tests"],
                          ids=lambda c: c["case_id"])
 def test_checkout_success(logged_in_driver, case):
     """完整的结账正向流程：选商品 → 结账 → 填地址 → 确认 → 下单成功"""
@@ -43,7 +43,7 @@ def test_checkout_success(logged_in_driver, case):
 @allure.epic("saucedemo 测试")
 @allure.feature("checkout 模块测试")
 @allure.story("结账表单校验")
-@pytest.mark.parametrize("case", read("checkout_data.yaml")["checkout_validation_tests"],
+@pytest.mark.parametrize("case", read_yaml("checkout_data.yaml")["checkout_validation_tests"],
                          ids=lambda c: c["case_id"])
 def test_checkout_validation(logged_in_driver, case):
     """结账表单必填校验：空字段 → 错误提示"""
@@ -69,7 +69,7 @@ def test_checkout_validation(logged_in_driver, case):
 @allure.epic("saucedemo 测试")
 @allure.feature("checkout 模块测试")
 @allure.story("取消结账")
-@pytest.mark.parametrize("case", read("checkout_data.yaml")["checkout_cancel_tests"],
+@pytest.mark.parametrize("case", read_yaml("checkout_data.yaml")["checkout_cancel_tests"],
                          ids=lambda c: c["case_id"])
 def test_checkout_cancel(logged_in_driver, case):
     """取消结账 → 返回购物车页"""

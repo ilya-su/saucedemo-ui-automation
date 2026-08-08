@@ -25,3 +25,10 @@ login_tests:
     password: "secret_sauce"
     expected: "error"
     error_msg: "Username is required"
+
+  - case_id: "LOGIN_005"
+    desc: "空密码登录"
+    username: "stander_user"
+    password: ""
+    expected: "error"
+    error_msg: "Password is required"
